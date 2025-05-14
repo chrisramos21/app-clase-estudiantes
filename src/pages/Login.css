@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  background-color: #1e1a14; 
+  font-family: 'Merriweather', serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: all 1s ease;
+}
+
+.form .form_front,
+.form .form_back {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  position: absolute;
+  backface-visibility: hidden;
+  padding: 65px 45px;
+  border-radius: 15px;
+  border: 2px solid #bfa065; 
+  background-color: #3e2e20; 
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.form .form_back {
+  transform: rotateY(-180deg);
+}
+
+.form_details {
+  font-family: "Great Vibes", cursive;
+  font-style: normal;
+  font-size: 26px;
+  font-weight: 700;
+  color: #eae0c8;
+  letter-spacing: 2px;
+  text-shadow: 4px 2px 1px #e9a642; 
+}
+
+.input {
+  width: 245px;
+  min-height: 45px;
+  color: #1e1a14;
+  background-color: #f5f5dc;
+  border: 2px solid #bfa065;
+  border-radius: 6px;
+  padding: 0px 10px;
+  transition: 0.35s;
+  font-size: 16px;
+}
+
+.input::placeholder {
+  color: #888;
+}
+
+.input:focus {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #bfa065;
+  outline: none;
+}
+
+.btn {
+  padding: 10px 35px;
+  cursor: pointer;
+  background-color: #bfa065;
+  border: none;
+  color: #1e1a14;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: black;
+  color: white;
+  border-color: black;
+  transform: scale(1.05);
+}
+
+.switch {
+  font-size: 13px;
+  color: #eae0c8;
+}
+
+.signup_tog {
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  color: #c4a35a;
+}
+
+.container #signup_toggle {
+  display: none;
+}
+
+.container #signup_toggle:checked + .form {
+  transform: rotateY(-180deg);
+}
