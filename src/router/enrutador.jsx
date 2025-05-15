@@ -3,28 +3,28 @@ import Contacto from "../pages/Contacto";
 import Home from "../pages/home";
 import Login from "../pages/login";
 import Servicios from "../pages/servicios";
+import RutaProtegida from "../components/RutaProtegida";
 
 
 export let enrutador = [
-    {
-        path: '/',
-        element: <Login/>
-    },
-    {
-        path: '/home',
-        element: <Home/>
-    },
-    {
-        path: '/servicios',
-        element: <Servicios/>
-    },
-    {
-        path: '/contacto',
-        element: <Contacto/>
-    },
-    {
-        path: '/acerca de',
-        element: <Acerca/>
-    }
-    
-]
+  {
+    path: '/',
+    element: <Login />
+  },
+  {
+    path: '/home',
+    element: <RutaProtegida componente={<Home />} />
+  },
+  {
+    path: '/servicios',
+    element: <RutaProtegida componente={<Servicios />} />
+  },
+  {
+    path: '/contacto',
+    element: <RutaProtegida componente={<Contacto />} />
+  },
+  {
+    path: '/acerca de',
+    element: <RutaProtegida componente={<Acerca />} />
+  },
+];

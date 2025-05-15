@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Login.css';
+import { generarToken, alertaGeneral, alertaRedireccion } from '../helpers/funciones';
 import { useNavigate } from 'react-router-dom';
 
 const apiUsuario = "https://back-json-server-martes.onrender.com/usuarios";
@@ -11,73 +12,58 @@ const Login = () => {
     const [getName, setName] = useState("");
     const [getPhone, setPhone] = useState("")
     const [getEmail, setEmail] = useState("");
+    let redireccion = useNavigate();
 
-    const redireccion = useNavigate();
+    function getUsuarios() {
+        fetch(apiUsuario)
+            .then((response) => response.json())
+            .then((data) => setUsuarios(data))
+            .catch((error) => console.log(error));
+    }
 
     useEffect(() => {
-        obtenerUsuarios();
+        getUsuarios();
     }, []);
 
-    const obtenerUsuarios = () => {
-        fetch(apiUsuario)
-            .then(res => res.json())
-            .then(data => setUsuarios(data))
-            .catch(err => console.log("Error al obtener usuarios:", err));
-    };
 
-    const iniciarSesion = () => {
-        if (!getUser || !getPassword) {
-            alert("Por favor complete todos los campos");
-            return;
-        }
-
-        const usuario = usuarios.find(
-            u => u.usuario === getUser && u.contrasena === getPassword
+    function buscarUsuario() {
+        let usuarioEncontrado = usuarios.find(
+            (item) => getUser == item.usuario && getPassword == item.contrasena
         );
-
-        if (usuario) {
-            localStorage.setItem("token", "usuario-autenticado");
-            localStorage.setItem("usuario", JSON.stringify(usuario));
-            redireccion('/home');
+        return usuarioEncontrado;
+    }
+    function iniciarSesion() {
+        if (buscarUsuario()) {
+            let token = generarToken();
+            localStorage.setItem("token", token);
+            localStorage.setItem("usuario", JSON.stringify(buscarUsuario()));
+            alertaRedireccion(redireccion, "Bienvenido al sistema", "/home");
         } else {
-            alert("Credenciales incorrectas");
+            alertaGeneral("Error", "Error de credenciales", "Error");
         }
-    };
-    const registrarUsuario = () => {
-        if (!getUser || !getPassword || !getName || !getEmail) {
-            alert("Todos los campos son obligatorios para el registro");
-            return;
-        }
-
-        const existe = usuarios.some(
-            u => u.usuario === getUser || u.correo === getEmail
+    }
+    function registrarUsuario() {
+        let auth = usuarios.some(
+            (item) => item.correo == getEmail || item.usuario == getUser
         );
-
-        if (existe) {
-            alert("Este usuario o correo ya existe");
-            return;
+        if (auth) {
+            alertaGeneral("Error", "Usuario ya existe en la base de datos", "Error");
+        } else {
+            let usuario = {
+                nombre: getName,
+                correo: getEmail,
+                usuario: getUser,
+                contrasena: getPassword,
+            };
+            fetch(apiUsuario, {
+                method: "POST",
+                body: JSON.stringify(usuario),
+            }).then(() => {
+                getUsuarios();
+                alertaGeneral("Registros exitoso", "Ya puede ir a Login e ingresar sus credenciales", "info")
+            });
         }
-
-        const nuevoUsuario = {
-            nombre: getName,
-            correo: getEmail,
-            usuario: getUser,
-            contrasena: getPassword,
-        };
-
-        fetch(apiUsuario, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(nuevoUsuario)
-        })
-            .then(() => {
-                obtenerUsuarios(); // Actualizar lista
-                alert("Usuario registrado con éxito. Ahora puede iniciar sesión.");
-            })
-            .catch(err => console.log("Error al registrar:", err));
-    };
+    }
 
     return (
         <div className="container">
