@@ -86,7 +86,24 @@
 
 ###
 
-<p align="left">const usuarios = [<br>  { usuario: "admin", contrasena: "1234" },<br>  { usuario: "profesor", contrasena: "1234" }<br>];<br><br>const estudiantes = [<br>  { nombre: "Juan Pérez", documento: "123", nota: 4.5 },<br>  { nombre: "María López", documento: "456", nota: 3.8 }<br>];</p>
+<p align="left">El archivo `src/services/dataBase.js` contiene una simulación de la base de datos, incluyendo usuarios con distintos roles (estudiante y profesor) y estudiantes con notas:</p>
+
+```js
+
+  {
+    id: 1,
+    email: "juan.perez@example.com",
+    name: "Juan Perez",
+    password: "hashed_password_123",
+    phone_number: "+525511223344",
+    user_type: "teacher"
+  },
+  
+  // ...más usuarios
+
+  { nombre: "Juan Pérez", documento: "123", nota: 4.5 },
+  { nombre: "María López", documento: "456", nota: 3.8 }
+
 
 ###
 
