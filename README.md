@@ -86,24 +86,30 @@
 
 ###
 
-<p align="left">El archivo `src/services/dataBase.js` contiene una simulación de la base de datos, incluyendo usuarios con distintos roles (estudiante y profesor) y estudiantes con notas:</p>
+<h1 align="left"></h1>
 
-```js
+###
 
-  {
-    id: 1,
-    email: "juan.perez@example.com",
-    name: "Juan Perez",
-    password: "hashed_password_123",
-    phone_number: "+525511223344",
-    user_type: "teacher"
-  },
-  
-  // ...más usuarios
+<p align="left">{<br>        id: 1,<br>        email: "juan.perez@example.com",<br>        name: "Juan Perez",<br>        password: "hashed_password_123",<br>        phone_number: "+525511223344",<br>        user_type: "teacher"<br>    },<br>    {<br>        id: 2,<br>        email: "maria.garcia@example.com",<br>        name: "Maria Garcia",<br>        password: "hashed_password_456",<br>        phone_number: "+525566778899",<br>        user_type: "student"<br>    },<br>    {<br>        id: 3,<br>        email: "carlos.lopez@example.com",<br>        name: "Carlos Lopez",<br>        password: "hashed_password_789",<br>        phone_number: "+525512345678",<br>        user_type: "teacher"<br>    },<br>    {<br>        id: 4,<br>        email: "ana.martinez@example.com",<br>        name: "Ana Martinez",<br>        password: "hashed_password_101",<br>        phone_number: "+525598765432",<br>        user_type: "student"<br>    },<br>    {<br>        id: 5,<br>        email: "luis.ramirez@example.com",<br>        name: "Luis Ramirez",<br>        password: "hashed_password_202",<br>        phone_number: "+525576543210",<br>        user_type: "student"<br>    },<br>    {<br>        id: 6,<br>        email: "sofia.gomez@example.com",<br>        name: "Sofia Gomez",<br>        password: "hashed_password_303",<br>        phone_number: "+525534567890",<br>        user_type: "teacher"<br>    },<br>    {<br>        id: 7,<br>        email: "diego.morales@example.com",<br>        name: "Diego Morales",<br>        password: "hashed_password_404",<br>        phone_number: "+525523456789",<br>        user_type: "student"<br>    },<br>    {<br>        id: 8,<br>        email: "valeria.nunez@example.com",<br>        name: "Valeria Nunez",<br>        password: "hashed_password_505",<br>        phone_number: "+525578912345",<br>        user_type: "teacher"<br>    }</p>
 
-  { nombre: "Juan Pérez", documento: "123", nota: 4.5 },
-  { nombre: "María López", documento: "456", nota: 3.8 }
+###
 
+<h2 align="left"></h2>
+
+###
+
+<p align="left"></p>
+
+###
+
+<h2 align="left"></h2>
+
+###
+
+<div align="left">
+</div>
+
+###
 
 ###
 
