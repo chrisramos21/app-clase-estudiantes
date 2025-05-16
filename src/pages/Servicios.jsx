@@ -2,7 +2,7 @@ import './Servicios.css'
 import MenuLateral from "../components/MenuLateral"
 const Servicios = () => {
     return (
-        <div className="servcio">
+        <div className="servicio">
             <MenuLateral />
             <div className="servicios-div">
                 <main className="servicio-principal">
