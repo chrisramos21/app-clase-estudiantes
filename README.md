@@ -125,6 +125,6 @@
 
 ###
 
-<p align="left">Proyecto desarrollado por estudiantes del programa Frontend II:<br><br>Christian Ramos Arias,<br><br>Juan Felipe Moreno Cataño,<br><br>Santiago Gómez Barrientos,<br><br>Esteban Felipe Galvis Londoño<br><br>y Juan Camilo Olaya Herrera.</p>
+<p align="left">Christian Ramos Arias --> 1001366244<br><br>Juan Felipe Moreno Cataño --> 1017184807<br><br>Juan Camilo Olaya Herrera --> 1000752382<br><br>Esteban Felipe Galvis Londoño --> 1020474448<br><br>Santiago Gómez Barrientos --> 1007543240</p>
 
 ###
