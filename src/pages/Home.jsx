@@ -8,7 +8,7 @@ const Home = () => {
             <div className="home-contenido">
                 <main className="home-principal">
                     <section className="home-titulo">
-                        <h2 className="home-titulo-texto">Estás en el home</h2>
+                        
                     </section>
                     <div className="home-info">
                         <h2>Bienvenido, estudiante</h2>
