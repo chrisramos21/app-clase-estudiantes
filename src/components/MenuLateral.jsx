@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
+import { alertaRedireccion } from "../helpers/funciones";
 
 const MenuHorizontal = () => {
     const redireccion = useNavigate()
@@ -7,6 +8,14 @@ const MenuHorizontal = () => {
 
     const toggleMenu = () => {
         setMenuAbierto(!menuAbierto)
+    }
+
+const MenuLateral = () => {
+    let redireccion = useNavigate()
+    function cerrarSesion() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("usuario");
+        alertaRedireccion(redireccion, "cerrando sesión...", "/");
     }
 
     const homeRedireccion = () => {
@@ -25,6 +34,7 @@ const MenuHorizontal = () => {
         redireccion('/acerca de')
         setMenuAbierto(false)
     }
+
     const cerrarSesionRedireccion = () => {
         redireccion('/')
         setMenuAbierto(false)
@@ -47,9 +57,9 @@ const MenuHorizontal = () => {
                 <a onClick={contactosRedireccion} className="menu-header-navegacion-item" href="#">Contacto</a>
                 <a onClick={acercaRedireccion} className="menu-header-navegacion-item" href="#">Acerca de</a>
                 <button onClick={cerrarSesionRedireccion} type='button' className="menu-header-navegacion-item cerrar-sesion">Cerrar sesión</button>
-            </nav>
-        </header>
-    )
+
+
+    
 }
 
 export default MenuHorizontal
