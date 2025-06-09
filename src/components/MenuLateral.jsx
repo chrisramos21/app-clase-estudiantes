@@ -74,7 +74,7 @@ const MenuLateral = () => {
             className="menu-header-navegacion-item"
             href="#"
           >
-            Servicios
+            Estudiantes
           </a>
           <a
             onClick={contactosRedireccion}
