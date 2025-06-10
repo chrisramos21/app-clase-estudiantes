@@ -47,7 +47,7 @@ const MenuLateral = () => {
             Contacto
           </Link>
           <Link to="acerca" className="menu-header-navegacion-item">
-            Acerca
+            Analisis
           </Link>
           <button
             onClick={cerrarSesion}

@@ -1,41 +1,83 @@
-import './Acerca.css'
-import MenuLateral from "../components/MenuLateral"
 const Acerca = () => {
-    return (
-        <div className="acerca">
-            <div className="acerca-contenido">
-                <main className="acerca-principal">
-                    <section className="acerca-titulo">
-                        <h2 className="acerca-titulo-texto">Acerca de...</h2>
-                    </section>
-                    <div>
-                        <img src="/nosotros.jpg" alt="Acerca de nosotros" />
+  return (
+    <div className="absolute inset-0 flex justify-center items-center gap-6 z-20 flex-wrap">
 
-                        <section>
-                            <h3 className="acerca-titulo-info">Historia de la Institución</h3>
-                            <p className="acerca-parrafo">
-                                Nuestro centro educativo fue fundado en el año 2001 con el propósito de brindar educación de calidad.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h3 className="acerca-titulo-info">Misión y Visión</h3>
-                            <p className="acerca-parrafo"><strong>Misión:</strong> Formar estudiantes con excelencia académica y valores sólidos.</p>
-                            <p className="acerca-parrafo"><strong>Visión:</strong> Ser una institución líder en educación integral.</p>
-                        </section>
-
-                        <section>
-                            <h3 className="acerca-titulo-info">Equipo docente</h3>
-                            <div className="equipo-docente">
-                                <img src="/profesor1.jpg" alt="Profesor 1" />
-                                <img src="/profesor2.jpg" alt="Profesor 2" />
-                            </div>
-                        </section>
-                    </div>
-                </main>
-            </div>
+      {/* Tarjeta 2 */}
+      <div className="relative flex w-80 flex-col rounded-xl bg-white text-gray-700 shadow-2xl z-30">
+        <img
+          src="/public/grafica2.png"
+          alt="Gráfica 1"
+          className="mx-4 -mt-6 h-40 rounded-xl object-cover shadow-lg"
+        />
+        <div className="p-6">
+          <h5 className="mb-2 text-xl font-semibold text-blue-gray-900">
+            Gráfica 1
+          </h5>
+          <p className="text-base font-light leading-relaxed text-gray-700">
+            Esta gráfica muestra los resultados del primer experimento realizado.
+          </p>
         </div>
-    )
-}
+        <div className="p-6 pt-0">
+          <button
+            type="button"
+            className="rounded-lg bg-yellow-600 py-3 px-6 text-xs font-bold uppercase text-white shadow-md hover:bg-yellow-700"
+          >
+            Ver más
+          </button>
+        </div>
+      </div>
 
-export default Acerca
+      {/* Tarjeta 3 */}
+      <div className="relative flex w-80 flex-col rounded-xl bg-white text-gray-700 shadow-2xl z-30">
+        <img
+          src="/public/grafica1.png"
+          alt="Gráfica 2"
+          className="mx-4 -mt-6 h-40 rounded-xl object-cover shadow-lg"
+        />
+        <div className="p-6">
+          <h5 className="mb-2 text-xl font-semibold text-blue-gray-900">
+            Gráfica 2
+          </h5>
+          <p className="text-base font-light leading-relaxed text-gray-700">
+            Comparación de resultados entre métodos tradicionales y nuevos.
+          </p>
+        </div>
+        <div className="p-6 pt-0">
+          <button
+            type="button"
+            className="rounded-lg bg-yellow-600 py-3 px-6 text-xs font-bold uppercase text-white shadow-md hover:bg-yellow-700"
+          >
+            Ver más
+          </button>
+        </div>
+      </div>
+
+      {/* Tarjeta 4 */}
+      <div className="relative flex w-80 flex-col rounded-xl bg-white text-gray-700 shadow-2xl z-30">
+        <img
+          src="/public/grafica3.png"
+          alt="Gráfica 3"
+          className="mx-4 -mt-6 h-40 rounded-xl object-cover shadow-lg"
+        />
+        <div className="p-6">
+          <h5 className="mb-2 text-xl font-semibold text-blue-gray-900">
+            Gráfica 3
+          </h5>
+          <p className="text-base font-light leading-relaxed text-gray-700">
+            Tendencias de rendimiento durante la última semana.
+          </p>
+        </div>
+        <div className="p-6 pt-0">
+          <button
+            type="button"
+            className="rounded-lg bg-yellow-600 py-3 px-6 text-xs font-bold uppercase text-white shadow-md hover:bg-yellow-700"
+          >
+            Ver más
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Acerca;
