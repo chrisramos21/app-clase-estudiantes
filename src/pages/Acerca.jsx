@@ -3,7 +3,6 @@ import MenuLateral from "../components/MenuLateral"
 const Acerca = () => {
     return (
         <div className="acerca">
-            <MenuLateral />
             <div className="acerca-contenido">
                 <main className="acerca-principal">
                     <section className="acerca-titulo">

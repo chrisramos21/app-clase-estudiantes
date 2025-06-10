@@ -3,13 +3,9 @@ import Contacto from "../pages/Contacto";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import RutaProtegida from "../components/RutaProtegida";
-import Acerca from "../pages/Acerca";
 import AgregarEstudiantes from "../pages/AgregarEstudiantes";
-import Contacto from "../pages/Contacto";
 import EditarEstudiantes from "../pages/EditarEstudiantes";
 import GestionEstudiantes from "../pages/GestionEstudiantes";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
 
 export let enrutador = [
   {
