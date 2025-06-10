@@ -9,4 +9,4 @@ function RutaProtegida({ componente }) {
   }
 }
 
-export default RutaProtegida;
+export default RutaProtegida
