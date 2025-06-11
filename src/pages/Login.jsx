@@ -16,22 +16,25 @@ const Login = () => {
     const [regUserType, setRegUserType] = useState("");
     const redireccion = useNavigate();
 
-    useEffect(() => {
+    const cargarUsuarios = () => {
         fetch(apiUsuario)
-            .then((res) => res.json())
-            .then((data) => setUsuarios(data))
-            .catch((err) => console.error("Error cargando usuarios:", err));
+            .then(res => res.json())
+            .then(data => setUsuarios(data))
+            .catch(err => console.error("Error cargando usuarios:", err));
+    };
+
+    useEffect(() => {
+        cargarUsuarios();
     }, []);
 
-    function iniciarSesion() {
+    const iniciarSesion = () => {
         fetch(apiUsuario)
-            .then((res) => res.json())
-            .then((data) => {
+            .then(res => res.json())
+            .then(data => {
                 const usuario = data.find(
-                    (item) =>
-                        item.email === loginEmail.trim() &&
-                        item.password === loginPassword.trim()
+                    item => item.email === loginEmail.trim() && item.password === loginPassword.trim()
                 );
+
                 if (usuario) {
                     const token = generarToken();
                     localStorage.setItem("token", token);
@@ -41,80 +44,76 @@ const Login = () => {
                     alertaGeneral("Error", "Correo o contraseña incorrectos", "error");
                 }
             })
-            .catch((err) => {
+            .catch(err => {
                 console.error("Error al intentar iniciar sesión:", err);
                 alertaGeneral("Error", "No se pudo conectar al servidor", "error");
             });
-    }
+    };
 
-    function registrarUsuario() {
-      
+    const registrarUsuario = () => {
         if (!regName.trim() || !regEmail.trim() || !regPassword.trim() || !regPhone.trim() || !regUserType.trim()) {
             alertaGeneral("Error", "Todos los campos son obligatorios", "error");
             return;
         }
-        let auth = usuarios.some(
-            (item) => item.email === regEmail
-        );
 
-        if (auth) {
+        const yaExiste = usuarios.some(user => user.email === regEmail.trim());
+        if (yaExiste) {
             alertaGeneral("Error", "Usuario ya existe en la base de datos", "error");
-        } else {
-            const nuevoUsuario = {
-                name: regName,
-                email: regEmail,
-                password: regPassword,
-                phone_number: regPhone,
-                user_type: regUserType
-            };
-
-            console.log("Enviando usuario:", nuevoUsuario);
-
-            fetch(apiUsuario, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(nuevoUsuario)
-            })
-                .then((res) => {
-                    if (!res.ok) {
-                        throw new Error("Registro fallido");
-                    }
-                    return res.json();
-                })
-                .then(() => {
-                    alertaGeneral("Registro exitoso", "Ya puede ir a Login e ingresar sus credenciales", "info");
-                })
-                .catch((error) => {
-                    console.error("Error en el registro:", error);
-                    alertaGeneral("Error", "No se pudo registrar el usuario", "error");
-                });
+            return;
         }
-    }
+
+        const nuevoUsuario = {
+            name: regName.trim(),
+            email: regEmail.trim(),
+            password: regPassword.trim(),
+            phoneNumber: regPhone.trim(),
+            userType: regUserType
+        };
+
+        fetch(apiUsuario, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(nuevoUsuario)
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.text().then(text => { throw new Error(text); });
+                }
+                return res.json();
+            })
+            .then(() => {
+                alertaGeneral("Registro exitoso", "Ya puede ir a Login e ingresar sus credenciales", "info");
+                cargarUsuarios();
+            })
+            .catch(error => {
+                console.error("Error en el registro:", error);
+                alertaGeneral("Error", `No se pudo registrar el usuario. Detalles: ${error.message}`, "error");
+            });
+    };
 
     return (
         <div className="container">
             <input id="signup_toggle" type="checkbox" />
             <form className="form" onSubmit={e => e.preventDefault()}>
+
                 {/* LOGIN */}
                 <div className="form_front">
                     <div className="form_details">Login</div>
                     <input
-                        onChange={(e) => setLoginEmail(e.target.value)}
+                        onChange={e => setLoginEmail(e.target.value)}
                         type="email"
                         className="input"
                         placeholder="Email"
                     />
                     <input
-                        onChange={(e) => setLoginPassword(e.target.value)}
+                        onChange={e => setLoginPassword(e.target.value)}
                         type="password"
                         className="input"
                         placeholder="Password"
                     />
-                    <button onClick={iniciarSesion} type="button" className="btn">
-                        Login
-                    </button>
+                    <button onClick={iniciarSesion} type="button" className="btn">Login</button>
                     <span className="switch">
                         Don't have an account?
                         <label htmlFor="signup_toggle" className="signup_tog">Sign Up</label>
@@ -125,25 +124,25 @@ const Login = () => {
                 <div className="form_back">
                     <div className="form_details">SignUp</div>
                     <input
-                        onChange={(e) => setRegName(e.target.value)}
+                        onChange={e => setRegName(e.target.value)}
                         type="text"
                         className="input"
                         placeholder="Name"
                     />
                     <input
-                        onChange={(e) => setRegPassword(e.target.value)}
+                        onChange={e => setRegPassword(e.target.value)}
                         type="password"
                         className="input"
                         placeholder="Password"
                     />
                     <input
-                        onChange={(e) => setRegPhone(e.target.value)}
+                        onChange={e => setRegPhone(e.target.value)}
                         type="text"
                         className="input"
                         placeholder="Phone number"
                     />
                     <input
-                        onChange={(e) => setRegEmail(e.target.value)}
+                        onChange={e => setRegEmail(e.target.value)}
                         type="email"
                         className="input"
                         placeholder="Email"
@@ -151,16 +150,14 @@ const Login = () => {
                     <select
                         className="input"
                         value={regUserType}
-                        onChange={(e) => setRegUserType(e.target.value)}
+                        onChange={e => setRegUserType(e.target.value)}
                     >
                         <option value="">Select user type</option>
-                        <option value="teacher">Docente</option>
-                        <option value="student">Estudiante</option>
-                        <option value="admin">Administrador</option>
+                        <option value="Estudiante">Estudiante</option>
+                        <option value="Docente">Docente</option>
+                        <option value="Administrador">Administrador</option>
                     </select>
-                    <button onClick={registrarUsuario} type="button" className="btn">
-                        Signup
-                    </button>
+                    <button onClick={registrarUsuario} type="button" className="btn">Signup</button>
                     <span className="switch">
                         Already have an account?
                         <label htmlFor="signup_toggle" className="signup_tog">Sign In</label>
