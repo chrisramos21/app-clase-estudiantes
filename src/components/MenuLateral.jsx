@@ -2,14 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { alertaRedireccion } from "../helpers/funciones";
 
-/*const MenuHorizontal = () => {
-    
-    const [menuAbierto, setMenuAbierto] = useState(false)
-
-    const toggleMenu = () => {
-        setMenuAbierto(!menuAbierto)
-    }*/
-
 const MenuLateral = () => {
   let redireccion = useNavigate();
 

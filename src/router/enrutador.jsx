@@ -2,8 +2,10 @@ import Acerca from "../pages/acerca";
 import Contacto from "../pages/Contacto";
 import Home from "../pages/home";
 import Login from "../pages/Login";
-import Servicios from "../pages/Servicios";
 import RutaProtegida from "../components/RutaProtegida";
+import GestionEstudiantes from "../pages/GestionEstudiantes";
+import AgregarEstudiantes from "../pages/AgregarEstudiantes";
+import EditarEstudiantes from "../pages/EditarEstudiantes";
 
 
 export let enrutador = [
@@ -12,19 +14,29 @@ export let enrutador = [
     element: <Login />
   },
   {
-    path: '/home',
-    element: <RutaProtegida componente={<Home />} />
-  },
-  {
-    path: '/servicios',
-    element: <RutaProtegida componente={<Servicios />} />
-  },
-  {
-    path: '/contacto',
-    element: <RutaProtegida componente={<Contacto />} />
-  },
-  {
-    path: '/acerca de',
-    element: <RutaProtegida componente={<Acerca />} />
-  },
+    path: '/home/',
+    element: <RutaProtegida componente={<Home />} />,
+    children: [
+      {
+        path: "suscripciones",
+        element: <GestionEstudiantes />
+      },
+      {
+        path: "editar/:id",
+        element: <EditarEstudiantes />
+      },
+      {
+        path: "agregar",
+        element: <AgregarEstudiantes />
+      },
+      {
+        path: "contacto",
+        element: <Contacto />
+      },
+      {
+        path: "acerca de",
+        element: <Acerca/>
+      }
+    ]
+  }
 ];

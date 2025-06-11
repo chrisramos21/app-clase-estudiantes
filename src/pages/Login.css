@@ -1,9 +1,7 @@
 body {
   margin: 0;
   font-family: 'Merriweather', serif;
-
-  /* Fondo de uñas */
-  background-image: url('/public/academia.png'); /* Asegúrate que esté en public/images/ */
+  background-image: url('/public/academia.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
