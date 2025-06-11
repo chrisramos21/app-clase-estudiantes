@@ -37,29 +37,17 @@ const MenuLateral = () => {
             menuAbierto ? "menu-abierto" : ""
           }`}
         >
-          <Link to = "/home"
-            className="menu-header-navegacion-item"
-            href="#"
-          >
+          <Link to="/home" className="menu-header-navegacion-item">
             Home
           </Link>
-          <Link to = "estudiante"
-            className="menu-header-navegacion-item"
-            href="#"
-          >
+          <Link to="estudiante" className="menu-header-navegacion-item">
             Estudiantes
           </Link>
-          <Link to = "contacto"
-            className="menu-header-navegacion-item"
-            href="#"
-          >
+          <Link to="contacto" className="menu-header-navegacion-item">
             Contacto
           </Link>
-          <Link to = "acerca de"
-            className="menu-header-navegacion-item"
-            href="#"
-          >
-            Acerca de
+          <Link to="acerca" className="menu-header-navegacion-item">
+            Acerca
           </Link>
           <button
             onClick={cerrarSesion}
