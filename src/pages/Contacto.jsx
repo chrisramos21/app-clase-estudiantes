@@ -11,7 +11,7 @@ const Contacto = () => {
                     </section>
                     <div>
                         <h2>Contáctanos</h2>
-                        <form>
+                        <form onSubmit={e => e.preventDefault()}>
                             <label>Nombre:<br /><input type="text" name="nombre" /></label><br />
                             <label>Email:<br /><input type="email" name="email" /></label><br />
                             <label>Mensaje:<br /><textarea name="mensaje"></textarea></label><br />
@@ -24,6 +24,7 @@ const Contacto = () => {
                         <p>Dirección: Calle 123 #45-67, Bogotá</p>
 
                         <h3>Ubicación</h3>
+                        {/* Agrega aquí la URL de tu mapa en el src del iframe si lo deseas */}
                         <iframe src="" width="100%" height="200"></iframe>
                     </div>
                 </main>
