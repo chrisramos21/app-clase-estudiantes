@@ -1,3 +1,7 @@
+import Acerca from "../pages/Acerca";
+import Contacto from "../pages/Contacto";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
 import RutaProtegida from "../components/RutaProtegida";
 import Acerca from "../pages/Acerca";
 import AgregarEstudiantes from "../pages/AgregarEstudiantes";

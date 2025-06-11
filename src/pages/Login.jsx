@@ -48,6 +48,11 @@ const Login = () => {
     }
 
     function registrarUsuario() {
+      
+        if (!regName.trim() || !regEmail.trim() || !regPassword.trim() || !regPhone.trim() || !regUserType.trim()) {
+            alertaGeneral("Error", "Todos los campos son obligatorios", "error");
+            return;
+        }
         let auth = usuarios.some(
             (item) => item.email === regEmail
         );
@@ -59,8 +64,8 @@ const Login = () => {
                 name: regName,
                 email: regEmail,
                 password: regPassword,
-                phoneNumber: regPhone,
-                userType: regUserType
+                phone_number: regPhone,
+                user_type: regUserType
             };
 
             console.log("Enviando usuario:", nuevoUsuario);
@@ -149,9 +154,9 @@ const Login = () => {
                         onChange={(e) => setRegUserType(e.target.value)}
                     >
                         <option value="">Select user type</option>
-                        <option value="Docente">Docente</option>
-                        <option value="Estudiante">Estudiante</option>
-                        <option value="Administrador">Administrador</option>
+                        <option value="teacher">Docente</option>
+                        <option value="student">Estudiante</option>
+                        <option value="admin">Administrador</option>
                     </select>
                     <button onClick={registrarUsuario} type="button" className="btn">
                         Signup
