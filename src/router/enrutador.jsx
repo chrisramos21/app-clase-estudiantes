@@ -7,36 +7,38 @@ import GestionEstudiantes from "../pages/GestionEstudiantes";
 import AgregarEstudiantes from "../pages/AgregarEstudiantes";
 import EditarEstudiantes from "../pages/EditarEstudiantes";
 
-
 export let enrutador = [
   {
     path: '/',
     element: <Login />
   },
   {
-    path: '/home/',
-    element: <RutaProtegida componente={<Home />} />,
+    path: '/home',
+    element: <RutaProtegida componente = {<Home/>} />,
     children: [
-      {
-        path: "suscripciones",
-        element: <GestionEstudiantes />
-      },
-      {
-        path: "editar/:id",
-        element: <EditarEstudiantes />
-      },
-      {
-        path: "agregar",
-        element: <AgregarEstudiantes />
-      },
-      {
-        path: "contacto",
-        element: <Contacto />
-      },
-      {
-        path: "acerca de",
-        element: <Acerca/>
-      }
-    ]
+    
+          { 
+            path: 'estudiante', 
+            element: <GestionEstudiantes /> 
+          },
+          { 
+            path: 'editar/:id', 
+            element: <EditarEstudiantes /> 
+          },
+          { 
+            path: 'agregar', 
+            element: <AgregarEstudiantes /> 
+          },
+          { 
+            path: 'contacto', 
+            element: <Contacto /> 
+          },
+          { 
+            path: 'acerca', 
+            element: <Acerca /> 
+          }
+        ]
+    
+    
   }
 ];
