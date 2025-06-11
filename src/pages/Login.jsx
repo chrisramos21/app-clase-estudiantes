@@ -23,14 +23,6 @@ const Login = () => {
             .catch((err) => console.error("Error cargando usuarios:", err));
     }, []);
 
-    function buscarUsuario() {
-        return usuarios.find(
-            (item) =>
-                item.email === loginEmail.trim() &&
-                item.password === loginPassword.trim()
-        );
-    }
-
     function iniciarSesion() {
         fetch(apiUsuario)
             .then((res) => res.json())

@@ -58,4 +58,4 @@ function GestionEstudiantes() {
     );
 }
 
-export default GestionEstudiantes;
+export default GestionEstudiantes
