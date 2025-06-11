@@ -3,7 +3,7 @@ import './Login.css';
 import { generarToken, alertaGeneral, alertaRedireccion } from '../helpers/funciones';
 import { useNavigate } from 'react-router-dom';
 
-const apiUsuario = "https://back-json-server-martes.onrender.com/usuarios";
+const apiUsuario = "http://localhost:8080/users";
 
 const Login = () => {
     const [usuarios, setUsuarios] = useState([]);
@@ -26,56 +26,74 @@ const Login = () => {
     function buscarUsuario() {
         return usuarios.find(
             (item) =>
-                item.correo === loginEmail.trim() &&
-                item.contraseña === loginPassword.trim()
+                item.email === loginEmail.trim() &&
+                item.password === loginPassword.trim()
         );
     }
 
     function iniciarSesion() {
-        const usuario = buscarUsuario();
-        if (usuario) {
-            const token = generarToken();
-            localStorage.setItem("token", token);
-            localStorage.setItem("usuario", JSON.stringify(usuario));
-            alertaRedireccion(redireccion, "Bienvenido al sistema", "/home");
-        } else {
-            alertaGeneral("Error", "Correo o contraseña incorrectos", "error");
-        }
+        fetch(apiUsuario)
+            .then((res) => res.json())
+            .then((data) => {
+                const usuario = data.find(
+                    (item) =>
+                        item.email === loginEmail.trim() &&
+                        item.password === loginPassword.trim()
+                );
+                if (usuario) {
+                    const token = generarToken();
+                    localStorage.setItem("token", token);
+                    localStorage.setItem("usuario", JSON.stringify(usuario));
+                    alertaRedireccion(redireccion, "Bienvenido al sistema", "/home");
+                } else {
+                    alertaGeneral("Error", "Correo o contraseña incorrectos", "error");
+                }
+            })
+            .catch((err) => {
+                console.error("Error al intentar iniciar sesión:", err);
+                alertaGeneral("Error", "No se pudo conectar al servidor", "error");
+            });
     }
 
     function registrarUsuario() {
-        const yaExiste = usuarios.some((u) => u.correo === regEmail.trim());
+        let auth = usuarios.some(
+            (item) => item.email === regEmail
+        );
 
-        if (yaExiste) {
-            alertaGeneral("Error", "El correo ya está registrado", "error");
-            return;
+        if (auth) {
+            alertaGeneral("Error", "Usuario ya existe en la base de datos", "error");
+        } else {
+            const nuevoUsuario = {
+                name: regName,
+                email: regEmail,
+                password: regPassword,
+                phoneNumber: regPhone,
+                userType: regUserType
+            };
+
+            console.log("Enviando usuario:", nuevoUsuario);
+
+            fetch(apiUsuario, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(nuevoUsuario)
+            })
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error("Registro fallido");
+                    }
+                    return res.json();
+                })
+                .then(() => {
+                    alertaGeneral("Registro exitoso", "Ya puede ir a Login e ingresar sus credenciales", "info");
+                })
+                .catch((error) => {
+                    console.error("Error en el registro:", error);
+                    alertaGeneral("Error", "No se pudo registrar el usuario", "error");
+                });
         }
-
-        const nuevoId = usuarios.length > 0
-            ? Math.max(...usuarios.map((u) => parseInt(u.id))) + 1
-            : 1;
-
-        const nuevoUsuario = {
-            id: nuevoId,
-            nombre: regName.trim(),
-            correo: regEmail.trim(),
-            contraseña: regPassword.trim(),
-            teléfono: regPhone.trim(),
-            user_type: regUserType
-        };
-
-        fetch(apiUsuario, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(nuevoUsuario),
-        })
-        .then(() => {
-            alertaGeneral("Registro exitoso", "Ya puede iniciar sesión", "info");
-            setUsuarios([...usuarios, nuevoUsuario]); // actualizar la lista local
-        })
-        .catch(() => {
-            alertaGeneral("Error", "No se pudo registrar", "error");
-        });
     }
 
     return (
@@ -139,9 +157,9 @@ const Login = () => {
                         onChange={(e) => setRegUserType(e.target.value)}
                     >
                         <option value="">Select user type</option>
-                        <option value="docente">Docente</option>
-                        <option value="estudiante">Estudiante</option>
-                        <option value="administrador">Administrador</option>
+                        <option value="Docente">Docente</option>
+                        <option value="Estudiante">Estudiante</option>
+                        <option value="Administrador">Administrador</option>
                     </select>
                     <button onClick={registrarUsuario} type="button" className="btn">
                         Signup

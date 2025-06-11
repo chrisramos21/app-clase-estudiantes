@@ -1,14 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { alertaRedireccion } from "../helpers/funciones";
-
-/*const MenuHorizontal = () => {
-    
-    const [menuAbierto, setMenuAbierto] = useState(false)
-
-    const toggleMenu = () => {
-        setMenuAbierto(!menuAbierto)
-    }*/
 
 const MenuLateral = () => {
   let redireccion = useNavigate();
@@ -26,30 +18,13 @@ const MenuLateral = () => {
     alertaRedireccion(redireccion, "cerrando sesión...", "/");
   }
 
-  const homeRedireccion = () => {
-    redireccion("/home");
-    setMenuAbierto(false);
-  };
-  const serviciosRedireccion = () => {
-    redireccion("/servicios");
-    setMenuAbierto(false);
-  };
-  const contactosRedireccion = () => {
-    redireccion("/contacto");
-    setMenuAbierto(false);
-  };
-  const acercaRedireccion = () => {
-    redireccion("/acerca de");
-    setMenuAbierto(false);
-  };
-
   return (
     <>
       <header className="menu-header">
         <div className="menu-header-logo-container">
-          <h1 onClick={homeRedireccion} className="menu-header-logo">
+          <Link to = "/home" className="menu-header-logo">
             Academia
-          </h1>
+          </Link>
           <img className="menu-header-logo-imagen" src="/logo.png" alt="logo" />
         </div>
 
@@ -62,34 +37,30 @@ const MenuLateral = () => {
             menuAbierto ? "menu-abierto" : ""
           }`}
         >
-          <a
-            onClick={homeRedireccion}
+          <Link to = "/home"
             className="menu-header-navegacion-item"
             href="#"
           >
             Home
-          </a>
-          <a
-            onClick={serviciosRedireccion}
+          </Link>
+          <Link to = "estudiante"
             className="menu-header-navegacion-item"
             href="#"
           >
             Estudiantes
-          </a>
-          <a
-            onClick={contactosRedireccion}
+          </Link>
+          <Link to = "contacto"
             className="menu-header-navegacion-item"
             href="#"
           >
             Contacto
-          </a>
-          <a
-            onClick={acercaRedireccion}
+          </Link>
+          <Link to = "acerca de"
             className="menu-header-navegacion-item"
             href="#"
           >
             Acerca de
-          </a>
+          </Link>
           <button
             onClick={cerrarSesion}
             type="button"
